@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+        <!--将Servlet接口实现类类路径地址交给Tomcat管理-->
+        <servlet>
+            <!--声明一个变量存储servlet接口实现类类路径-->
+            <servlet-name>oneServlet</servlet-name>
+
+            <!--servlet接口实现类类路径-->
+            <servlet-class>com.lujun61.servlet.ServletTest01</servlet-class>
+        </servlet>
+    <servlet>
+        <servlet-name>ServletTest02</servlet-name>
+        <servlet-class>com.lujun61.ServletLifeCircle.ServletTest02</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletTest03</servlet-name>
+        <servlet-class>com.lujun61.ServletLifeCircle.ServletTest03</servlet-class>
+        <!--通知Tomcat在启动时负责创建ServletTest03实例对象-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletTest03</servlet-name>
+        <url-pattern>/three</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ServletTest02</servlet-name>
+        <url-pattern>/two</url-pattern>
+    </servlet-mapping>
+
+    <!--设置简短请求别名：降低用户访问Servlet接口实现类难度-->
+        <servlet-mapping>
+            <!--指定Servlet接口实现类（类路径）-->
+            <servlet-name>oneServlet</servlet-name>
+
+            <!--别名必须以“/”开头-->
+            <url-pattern>/one</url-pattern>
+        </servlet-mapping>
+
+</web-app>
