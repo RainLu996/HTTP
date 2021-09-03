@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <!--form标签method属性：唯一的让浏览器以post方式发送请求的方法-->
+
+        <form action="/myWeb/request01" method="post">
+            请求参数：<input type="text" name="userName"/><br/>
+            <input type="submit" value="POST方式访问Request网站">
+        </form>
+
+        <form action="/myWeb/request01" method="get">
+            请求参数：<input type="text" name="userName"/><br/>
+            <input type="submit" value="GET方式访问Request网站">
+        </form>
+    </div>
+
+</body>
+</html>
