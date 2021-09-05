@@ -7,6 +7,8 @@ import java.io.IOException;
 public class OpenAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+
         //1、将参数信息（用户个人信息）通过请求对象获取到
         String userName = request.getParameter("userName");
         String money = request.getParameter("money");

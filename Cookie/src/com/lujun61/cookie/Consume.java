@@ -30,9 +30,6 @@ public class Consume extends HttpServlet {
         //改变输出流的方向至响应体（将交互信息写入到响应体中反馈给浏览器）
         PrintWriter out = response.getWriter();
 
-        //用于更新卡中存放money的Cookie
-        Cookie updateCookie = null;
-
         //1、获取请求头中的参数信息(食物名称)
         String food = request.getParameter("food");
 
@@ -49,7 +46,7 @@ public class Consume extends HttpServlet {
                     if (balance < dumplings) {
                         out.println("当前用户" + userName + "余额不足，请及时充值。");
                     } else {
-                        updateCookie = new Cookie("money", String.valueOf(balance - dumplings));
+                        response.addCookie(new Cookie("money", String.valueOf(balance - dumplings)));
                         purchase = dumplings;
                         balance = balance - dumplings;
                     }
@@ -57,7 +54,7 @@ public class Consume extends HttpServlet {
                     if (balance < bao) {
                         out.println("当前用户" + userName + "余额不足，请及时充值。");
                     } else {
-                        updateCookie = new Cookie("money", String.valueOf(balance - bao));
+                        response.addCookie(new Cookie("money", String.valueOf(balance - bao)));
                         purchase = bao;
                         balance = balance - bao;
                     }
@@ -65,16 +62,13 @@ public class Consume extends HttpServlet {
                     if (balance < noodle) {
                         out.println("当前用户" + userName + "余额不足，请及时充值。");
                     } else {
-                        updateCookie = new Cookie("money", String.valueOf(balance - noodle));
+                        response.addCookie(new Cookie("money", String.valueOf(balance - noodle)));
                         purchase = noodle;
                         balance = balance - noodle;
                     }
                 }
             }
         }
-
-        //3、返还给用户餐饮卡
-        response.addCookie(updateCookie);
 
         //4、记录消费记录，写入响应体中
         out.println("用户《" + userName + "》本次消费：" + purchase + "元；" + "余额：" + balance);
