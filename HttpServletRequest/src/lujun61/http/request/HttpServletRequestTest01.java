@@ -20,15 +20,16 @@ public class HttpServletRequestTest01 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /* 1、通过请求对象，读取【请求行】中的【URL】信息 */
         String url = request.getRequestURL().toString();
-        System.out.println("URL = " + url);  //URL = /myWeb/request01
+        System.out.println("URL = " + url);  //URL = http://localhost:8080/myWeb/request01
 
         /* 2、通过请求对象，读取【请求行】中的【method】信息 */
         String method = request.getMethod();
         System.out.println("method = " + method);  //method = GET
 
-        /* 3、通过请求对象，读取【请求行】中的【URI】信息 */
+        /* 3、通过请求对象，读取【请求行】中的【URI】统一资源标志符(Uniform Resource Identifier， URI)信息 */
+        //URI其实是对URL做了一个字符串截取操作
         String uri = request.getRequestURI();
-        System.out.println("URI = " + uri);
+        System.out.println("URI = " + uri);//URI = /myWeb/request01
 
         /* 4、通过请求对象，读取【请求头】中的所有【参数信息名】 */
         //将所有的请求参数名称保存到一个枚举对象中进行返回
@@ -38,7 +39,6 @@ public class HttpServletRequestTest01 extends HttpServlet {
             String parameter = request.getParameter(s);//获取参数值【value】
             System.out.println(s + "=" + parameter);
         }
-
     }
 
     @Override
